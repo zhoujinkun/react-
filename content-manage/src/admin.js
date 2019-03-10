@@ -3,7 +3,6 @@
  import Header from './components/Header/header';
  import Footer from './components/Footer/footer';
  import NavLeft from './components/NavLeft/navleft';
- import Home from './pages/Home/home';
  import './style/common.less';
  class Admin extends Component {
      constructor(props) {
@@ -20,7 +19,8 @@
                      <Col span={20} className="main">
                         <Header/>
                         <Row className="content">
-                            <Home/>
+                            {/* <Home/> */}
+                            {this.props.children}
                         </Row>
                         <Footer/>
                      </Col>

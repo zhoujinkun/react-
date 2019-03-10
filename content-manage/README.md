@@ -28,7 +28,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 然后在oneOf数组最后复制sass的两个loader配置追加到后面，将变量对应的改为上面自己声明的变量，并将第二个参数'sass-loader'改为'less-loader'：
-
+```
            {
                 test: lessRegex,
                 exclude: lessModuleRegex,
@@ -57,6 +57,7 @@ const lessModuleRegex = /\.module\.less$/;
                   'less-loader'
                 ),
               },
+    ```
 然后重新运行即可，亲测！
 
 
@@ -69,14 +70,14 @@ import { Button } from 'antd'
 
 npm i babel-plugin-import --save
 然后在package.json中babel属性下添加：
-
+```
     "plugins": [
       ["import", {
         "libraryName": "antd",
         "style": "css"
       }]
     ]
-
+```
 在webpack.config.js中配置，但pugins是个二维数组！！不要复制粘贴错了哦！
 
 修改antd默认主题颜色
@@ -91,6 +92,7 @@ npm i babel-plugin-import --save
 
 所以这个我们这样改：
 //在大约106行代码改成如下
+```
   if (preProcessor) {
       loaders.push({
         loader: require.resolve(preProcessor),
@@ -105,6 +107,44 @@ npm i babel-plugin-import --save
         },
       });
     }
+```
 每一次修改webpack配置文件，都要重新编译一下
 
-**注**：1. 放在public文件夹下的资源可以直接使用'asets/1.img',而不用使用相对路径（也找不到）；
+3.三角形的制作
+使用伪元素方法(具体的位置可以变动)
+```
+&:after{
+        content:"";
+        position: absolute;
+        left:50%;
+        bottom:-9px;
+        transform: translateX(-50%);
+        border-top:9px solid #fff;
+        border-right:12px solid transparent;
+        border-left:12px solid transparent;
+    }
+```
+4.函数传值以及给属性赋值
+```
+//省略部分代码
+ handleClickOpen= (type)=>{
+        // 技巧 给属性赋值
+        this.setState({
+            [type]:true
+        })
+    }
+    render() {
+        return (
+            <div>
+                <Card title="基础模态框">
+                                        {/*坑  函数传值必须使用箭头函数包裹 */}
+                    <Button onClick={() => this.handleClickOpen('showModal1')}>Open</Button>
+                    <Button onClick={() => this.handleClickOpen('showModal2')}>自定义页脚</Button>
+                    <Button onClick={() => this.handleClickOpen('showModal3')}>顶部20px</Button>
+                    <Button onClick={() => this.handleClickOpen('showModal4')}>水平垂直居中</Button>
+                </Card>
+            </div>
+        )
+```
+**注**：1. 放在public文件夹下的资源可以直接使用'assets/1.img',而不用使用相对路径（也找不到）；
+        2. 函数传值必须使用箭头函数包裹 ` <Button onClick={() => this.handleClickOpen('showModal1')}>Open</Button>`
