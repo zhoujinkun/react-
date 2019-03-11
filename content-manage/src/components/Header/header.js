@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Row,Col} from 'antd'
 import Utils from '../../utils/utils';
-import axios from 'axios';
 import './header.less';
 class Header extends Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {HashRouter as Router,Route,Switch} from 'react-router-dom';
 import App from './App'//引入根节点,作为路由内容的展示容器
-import Login from './pages/Login/Login';//登陆
+// import Login from './pages/Login/Login';//登陆
 import Admin from './admin';//管理者
 import NoMatch from './pages/404/404';//404页面
 import Home from './pages/Home/home';//首页
@@ -14,6 +14,9 @@ import Message from './pages/ui/messages/Messages';//UI Notice 页面
 import Tab from './pages/ui/tabs/Tabs';//UI Notice 页面
 import Gallery from './pages/ui/gallery/Gallery';//UI 画廊 页面
 import Carousels from './pages/ui/carousel/Carousels';//UI 轮播图 页面
+//Form
+import Login from './pages/form/login/Login'; //Form 登陆 页面
+import Register from './pages/form/register/Register';//Form 注册 页面
 class IRouter extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +26,7 @@ class IRouter extends Component {
         return (
             <Router>
                 <App>
-                    <Route path="/login" component={Login}/>
+                    {/* <Route path="/login" component={Login}/> */}
                     <Route path="/admin" render={()=>
                         <Admin>
                             {/* switch匹配到一个路由后就不再匹配其他的路由 */}
@@ -37,6 +40,8 @@ class IRouter extends Component {
                                 <Route path="/admin/ui/tabs" component={Tab}/>
                                 <Route path="/admin/ui/gallery" component={Gallery}/>
                                 <Route path="/admin/ui/carousel" component={Carousels}/>
+                                <Route path="/admin/form/login" component={Login}/>
+                                <Route path="/admin/form/reg" component={Register}/>
                                 <Route component={NoMatch}/>    
                             </Switch>    
                         </Admin>

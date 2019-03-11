@@ -148,3 +148,6 @@ npm i babel-plugin-import --save
 ```
 **注**：1. 放在public文件夹下的资源可以直接使用'assets/1.img',而不用使用相对路径（也找不到）；
         2. 函数传值必须使用箭头函数包裹 ` <Button onClick={() => this.handleClickOpen('showModal1')}>Open</Button>`
+        3.antd 的form组件必须使用form.create()(组件名)  就可以使用 const {getFieldDecorator} = this.props.form
+          另外使用DatePicker的时间选择器 必须安装moment插件
+          
