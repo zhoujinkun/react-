@@ -193,7 +193,7 @@ class Register extends Component {
                                         action="//jsonplaceholder.typicode.com/posts/"
                                         onChange={this.handleChange}
                                     >
-                                        {this.state.imageUrl?<img src={this.state.imageUrl}/>:<Icon type="plus"/>}
+                                        {this.state.imageUrl?<img src={this.state.imageUrl} alt=""/>:<Icon type="plus"/>}
                                     </Upload> 
                                 )
                             }

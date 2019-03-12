@@ -17,6 +17,9 @@ import Carousels from './pages/ui/carousel/Carousels';//UI 轮播图 页面
 //Form
 import Login from './pages/form/login/Login'; //Form 登陆 页面
 import Register from './pages/form/register/Register';//Form 注册 页面
+//table
+import BaicTable from './pages/table/BaicTable';//table 基础表格 页面
+import HighTables from './pages/table/HighTables';//table 高级表格 页面
 class IRouter extends Component {
     constructor(props) {
         super(props);
@@ -42,6 +45,8 @@ class IRouter extends Component {
                                 <Route path="/admin/ui/carousel" component={Carousels}/>
                                 <Route path="/admin/form/login" component={Login}/>
                                 <Route path="/admin/form/reg" component={Register}/>
+                                <Route path="/admin/table/basic" component={BaicTable}/>
+                                <Route path="/admin/table/high" component={HighTables}/>
                                 <Route component={NoMatch}/>    
                             </Switch>    
                         </Admin>
