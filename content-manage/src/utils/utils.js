@@ -1,5 +1,7 @@
 //公共机制
-
+import React from 'react';
+import {Select} from 'antd';
+const {Option} = Select;
 export default {
     // 封装时间
     formateDate(time){
@@ -30,5 +32,16 @@ export default {
             },
             showQuickJumper:true 
         }
+    },
+    //封装获取Options的方法
+    getOptionsList(data){
+        if(!data){
+            return [];
+        }
+        let options = [];
+        data.map((item,index)=>{
+            options.push(<Option value={item.id} key={item.id}>{item.name}</Option>)
+        })
+        return options;
     }
 }

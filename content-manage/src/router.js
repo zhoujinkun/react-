@@ -22,7 +22,12 @@ import BaicTable from './pages/table/BaicTable';//table 基础表格 页面
 import HighTables from './pages/table/HighTables';//table 高级表格 页面
 //城市管理页面
 import City from './pages/city/City';
-
+// 订单管理页面   
+import Order from './pages/order/Order';
+//订单详情页面根页面
+import Common from './common';
+//订单详情页面
+import Detail from './pages/order/Detail';
 class IRouter extends Component {
     constructor(props) {
         super(props);
@@ -51,9 +56,15 @@ class IRouter extends Component {
                                 <Route path="/admin/table/basic" component={BaicTable}/>
                                 <Route path="/admin/table/high" component={HighTables}/>
                                 <Route path="/admin/city" component={City}/>
+                                <Route path="/admin/order" component={Order}/>
                                 <Route component={NoMatch}/>    
                             </Switch>    
                         </Admin>
+                    }/>
+                    <Route path="/common" render={()=>
+                        <Common>
+                            <Route path="/common/order/detail/:orderId" component={Detail}/>   
+                        </Common>
                     }/>
                 </App>
             </Router>

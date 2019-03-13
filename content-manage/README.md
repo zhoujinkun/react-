@@ -146,8 +146,50 @@ npm i babel-plugin-import --save
             </div>
         )
 ```
+5.加载地图
+img['./public/readme/QQ截图20190313141324.png']
+调用地图首先 是通过window.BMap调用
+6. //取消掉antd label属性自带的 ：设置colon={false}
+```
+const end_time =  <FormItem label="~" colon={false} key={field[1]}>
+                        {
+                            getFieldDecorator('end_time')(
+                               <DatePicker format="YYYY-MM-DD HH:mm:ss"/>
+                            )
+                        }
+                    </FormItem>
+```
+
+7.baseFormItem 有一个未解BuG
+```
+   const SELECT =  <FormItem label={label} key={field}>
+                        {
+                            getFieldDecorator([field],{
+                                initialValue:initValue
+                            })(
+                                <Select   //有一个未解的类型错误
+                                    style={{width:width}}
+                                    placeholder={placeHolder}
+                                >
+                                    {utils.getOptionsList(item.list)}
+                                </Select>
+                            )
+                        }
+```  
+报告错误：`Failed prop type: Invalid prop \`id\` of type \`array\` supplied to \`Select\`, expected \`string\`.
+    in Select (at BaseFormItem.js:29)  `   
+
+8.小技巧
+```
+   //判断是否是mock数据
+        if(options.isMock){
+            baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api'; //mock假数据
+        }else{
+            baseApi = '';  //真正的接口数据地址
+        }
+         
+```
 **注**：1. 放在public文件夹下的资源可以直接使用'assets/1.img',而不用使用相对路径（也找不到）；
         2. 函数传值必须使用箭头函数包裹 ` <Button onClick={() => this.handleClickOpen('showModal1')}>Open</Button>`
         3.antd 的form组件必须使用form.create()(组件名)  就可以使用 const {getFieldDecorator} = this.props.form
           另外使用DatePicker的时间选择器 必须安装moment插件
-          

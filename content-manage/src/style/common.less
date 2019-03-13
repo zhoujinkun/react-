@@ -1,4 +1,16 @@
 @import './loading.less';
+@import './default.less';
+.clearfix{
+    &::after{
+        content:'';
+        display:block;
+        visibility: hidden;
+        clear:both;
+    }
+}
+li{
+    list-style: none;
+}
 .container{
     display: flex;
     .nav-left{
@@ -14,4 +26,15 @@
             padding:20px;
         }
     }
+}
+//common 简单的头部
+.simple-page{
+    .header-top{
+        background-color: #1890ff;
+        color:@colorM;
+    }
+}
+//common 简单的底部
+.simple-page,.content,.footer-common{
+    background-color: #f1f3f5;
 }

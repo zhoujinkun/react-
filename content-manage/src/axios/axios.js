@@ -1,7 +1,32 @@
 import axios from 'axios';
 import { Modal } from 'antd';
-
+import utils from '../utils/utils';
 export default class Axios {
+    static requestList(params,url,_this,isMock){
+        let data = {
+            params:params,
+            isMock
+        }
+        this.ajax({
+            url:url,
+            data:data,
+        }).then((res)=>{
+           if(res && res.result){
+                //注意this指向
+            _this.setState({
+                dataSource:res.result.item_list.map((item,index)=>{
+                    //直接返回带有key的数组
+                    item.key = index;
+                    return item;
+                }),
+                pagination:utils.pagination(res,(current)=>{
+                    _this.params.page = current;
+                    _this.requestList();
+                })
+            })
+           }
+        })
+    }
     static ajax(options){
         // 请求数据的时候加载loading
         let loading;
@@ -9,7 +34,16 @@ export default class Axios {
             loading = document.getElementById('ajaxLoading');
             loading.style.display="block";
         }
+
+
         let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
+        //判断是否是mock数据
+        /* if(options.isMock){
+            baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api'; //mock假数据
+        }else{
+            baseApi = '';  //真正的接口数据地址
+        } */
+         
         return new Promise((resolve,reject)=>{
             axios({
                 url:options.url,

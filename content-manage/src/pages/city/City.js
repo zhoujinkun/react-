@@ -59,6 +59,12 @@ class City extends Component {
             message.success(
                 `${res.result}`
             )
+            // 成功之后关闭弹窗
+            this.setState({
+                isShowOpenCity:false,
+            })
+            //重新渲染数据
+            this.requestList()
         })
     }
     render() {
