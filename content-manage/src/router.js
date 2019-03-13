@@ -20,6 +20,9 @@ import Register from './pages/form/register/Register';//Form 注册 页面
 //table
 import BaicTable from './pages/table/BaicTable';//table 基础表格 页面
 import HighTables from './pages/table/HighTables';//table 高级表格 页面
+//城市管理页面
+import City from './pages/city/City';
+
 class IRouter extends Component {
     constructor(props) {
         super(props);
@@ -47,6 +50,7 @@ class IRouter extends Component {
                                 <Route path="/admin/form/reg" component={Register}/>
                                 <Route path="/admin/table/basic" component={BaicTable}/>
                                 <Route path="/admin/table/high" component={HighTables}/>
+                                <Route path="/admin/city" component={City}/>
                                 <Route component={NoMatch}/>    
                             </Switch>    
                         </Admin>
