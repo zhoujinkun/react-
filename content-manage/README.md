@@ -1,6 +1,6 @@
 react-后台管理系统（cms）
 
-1.使用create-react-app 脚手架构建工程 安装 react-router-dom axios less-loader less antd babel-plugin-import 
+1.使用create-react-app 脚手架构建工程 安装 react-router-dom axios less-loader less antd babel-plugin-import echarts                                                 echarts-for-react react-redux  redux  redux-devtools-extension
 2.按需加载antd组件 （自定义主题颜色）  
  - 如果用git仓库建立的文件，先必须提交
  - git add . 
@@ -193,3 +193,4 @@ const end_time =  <FormItem label="~" colon={false} key={field[1]}>
         2. 函数传值必须使用箭头函数包裹 ` <Button onClick={() => this.handleClickOpen('showModal1')}>Open</Button>`
         3.antd 的form组件必须使用form.create()(组件名)  就可以使用 const {getFieldDecorator} = this.props.form
           另外使用DatePicker的时间选择器 必须安装moment插件
+        4.antd  Menu组件有自带的onClick方法可以获取到item元素，与redux结合使用时，必须给menuItem设置title否则item.props.title拿不到值，渲染面包屑的标题也就出现了问题。

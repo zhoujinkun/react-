@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import { Menu } from 'antd';
-
+//引入redux
+import {connect} from 'react-redux';
+import {switchMenu} from '../../redux/action/action'
 import menuList from '../../config/menuConfig.js';
 import './navleft.less';
 const SubMenu = Menu.SubMenu;
@@ -9,7 +11,17 @@ const SubMenu = Menu.SubMenu;
 class Navleft extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = { 
+            currentKey:""
+         };
+    }
+    //menu组件onClick自带的用法
+    handleClick=({item,key})=>{
+        const {dispatch} = this.props;
+        dispatch(switchMenu(item.props.title))
+        this.setState({
+            currentKey:key
+        })
     }
     componentWillMount(){
         const menuTreeCode = this.renderMenu(menuList);
@@ -27,9 +39,9 @@ class Navleft extends Component {
                         { this.renderMenu(item.children) }     
                     </SubMenu>
                 )
-            }
-            return  <Menu.Item key={item.key} >
-                        <NavLink to={`/admin${item.key}`}>{ item.title } </NavLink>  
+            }               //一定要设置title不然无法用props获取到title值，影响redux
+            return  <Menu.Item key={item.key} title={item.title}>
+                        <NavLink to={item.key}>{ item.title } </NavLink>  
                     </Menu.Item>
         })
         
@@ -41,7 +53,7 @@ class Navleft extends Component {
                     <img src="/assets/noda.jpg" alt=""/>
                     <h1>HB-ND-MS</h1>
                 </div>
-                <Menu mode="vertical" theme="dark">
+                <Menu mode="vertical" theme="dark" selectedKeys={this.state.currentKey} onClick={this.handleClick}>
                     {this.state.menuTreeCode}
                 </Menu>
             </div>
@@ -49,4 +61,4 @@ class Navleft extends Component {
     }
 }
 
-export default Navleft;
+export default connect()(Navleft);
