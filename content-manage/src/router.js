@@ -28,6 +28,18 @@ import Order from './pages/order/Order';
 import Common from './common';
 //订单详情页面
 import Detail from './pages/order/Detail';
+// 员工管理页面
+import User from './pages/user/User';
+// 车辆地图   
+import bikeMap from './pages/map/bikeMap';
+// 柱形图
+import Bar from './pages/echarts/bar/index';
+//饼图
+import Pie from './pages/echarts/pie/index';
+// 折线图
+import Lines from './pages/echarts/line/index';
+// 富文本
+import Rich from './pages/rich/index';
 class IRouter extends Component {
     constructor(props) {
         super(props);
@@ -57,6 +69,12 @@ class IRouter extends Component {
                                 <Route path="/admin/table/high" component={HighTables}/>
                                 <Route path="/admin/city" component={City}/>
                                 <Route path="/admin/order" component={Order}/>
+                                <Route path="/admin/user" component={User}/>
+                                <Route path="/admin/bikeMap" component={bikeMap}/>
+                                <Route path="/admin/charts/bar" component={Bar}/>
+                                <Route path="/admin/charts/pie" component={Pie}/>
+                                <Route path="/admin/charts/line" component={Lines}/>
+                                <Route path="/admin/rich" component={Rich}/>
                                 <Route component={NoMatch}/>    
                             </Switch>    
                         </Admin>
